@@ -53,6 +53,7 @@ fetchData("data/albums.json").then(function (data) {
 
     albumsTable.appendChild(row);
   });
+  //let albumRows = document.getElementsByTagName("tr");
 
   let albumRows = document.querySelectorAll("tr");
   console.log(albumRows);
@@ -66,6 +67,7 @@ fetchData("data/albums.json").then(function (data) {
 */
 
   function filterAlbums(e) {
+    console.log(e);
     let filter = e.target.innerText;
     console.log(filter);
 
