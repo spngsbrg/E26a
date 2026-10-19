@@ -20,6 +20,9 @@ fetchData("data/albums.json").then(function (data) {
   genreArray.forEach(function (genre) {
     let btn = document.createElement("button");
     btn.innerText = genre;
+
+    btn.onclick = filterAlbums;
+
     btnContainer.appendChild(btn);
   });
 
@@ -50,6 +53,29 @@ fetchData("data/albums.json").then(function (data) {
 
     albumsTable.appendChild(row);
   });
+
+  let albumRows = document.querySelectorAll("tr");
+  console.log(albumRows);
+
+  /*
+  albumRows.forEach(function (row) {
+    if (row.className == "Rock") {
+      row.style.display = "none";
+    }
+  });
+*/
+
+  function filterAlbums(e) {
+    let filter = e.target.innerText;
+    console.log(filter);
+
+    albumRows.forEach(function (row) {
+      row.style.display = "none";
+      if (row.className == filter || row.className == "head") {
+        row.style.display = "table-row";
+      }
+    });
+  }
 });
 
 //Magi - det taler vi om senere!!
