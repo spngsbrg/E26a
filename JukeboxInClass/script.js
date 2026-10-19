@@ -20,6 +20,9 @@ fetchData("data/albums.json").then(function (data) {
   genreArray.forEach(function (genre) {
     let btn = document.createElement("button");
     btn.innerText = genre;
+    btn.addEventListener("click", () =>{
+      hideOtherGenres(genre)
+    })
     btnContainer.appendChild(btn);
   });
 
@@ -43,6 +46,7 @@ fetchData("data/albums.json").then(function (data) {
     albumName.innerText = album.title;
     releasedDate.innerText = album.released;
 
+    row.style.display = "block";
     row.appendChild(artistName);
     row.appendChild(albumName);
     row.appendChild(releasedDate);
@@ -50,7 +54,25 @@ fetchData("data/albums.json").then(function (data) {
 
     albumsTable.appendChild(row);
   });
+  
+  
 });
+
+
+function hideOtherGenres(genre){
+  console.log(genre);
+  let albumsTableRows = document.getElementById("albums");
+  for (child of albumsTableRows.getElementsByTagName("tr")) {
+    if (child.className !== genre){
+      child.style.display = "none";
+      // console.log(child.innerText + " is not " + genre);
+    } else {
+      child.style.display = "block";
+      // console.log(child.innerText + " is " + genre);
+    }
+  };
+};
+
 
 //Magi - det taler vi om senere!!
 async function fetchData(url) {
